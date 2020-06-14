@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: BOOKING API
+  contact:
+    name: Radmir
+    email: radych.taminov@yandex.ru
+servers:
+  - url: 'https://example.com/v1.0'
+    description: Live Server
+tags:
+  - name: Customer
+    description: |
+      Основные операции для клиента
+  - name: Hotel
+    description: |
+      Основные операции для отеля
+  - name: Room
+    description: |
+      Основные операции для комнаты
+  - name: Book
+    description: |
+      Основные операции для бронирования
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  /customers:
+    $ref: ./paths/customers.yaml
+  /customer/{id}:
+    $ref: ./paths/customer@{id}.yaml
+  /hotels:
+    $ref: ./paths/hotels.yaml
+  /hotel/{id}:
+    $ref: ./paths/hotel@{id}.yaml
+  /room:
+    $ref: ./paths/room.yaml
+  /room/{id}:
+    $ref: ./paths/room@{id}.yaml
+  /hotel-rooms/{hotelId}:
+    $ref: ./paths/hotel-rooms@{hotelId}.yaml
+  /book:
+    $ref: ./paths/book.yaml
+  /book/{id}:
+    $ref: ./paths/book@{id}.yaml
+  /customer-books/{customerId}:
+    $ref: ./paths/customer-books@{customerId}.yaml

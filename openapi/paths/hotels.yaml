@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Hotel
+  summary: Get hotels data
+  operationId: GetHotels
+  description: |
+    Get hotels data
+  responses:
+    '200':
+      description: Hotels data has been found
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Hotel.yaml
+    '401':
+      description: Access forbidden
+post:
+  tags:
+    - Hotel
+  summary: Create new hotel
+  operationId: PostHotel
+  description: |
+    Create new hotel
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Hotel.yaml
+  responses:
+    '200':
+      description: Hotel has been succesfully created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Hotel.yaml
+    '401':
+      description: Access forbidden
+    '422':
+      description: Invalid data

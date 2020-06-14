@@ -1,0 +1,19 @@
+type: object
+required:
+  - name
+  - phone
+properties:
+  id:
+    description: Customer ID
+    readOnly: true
+    type: integer
+  name:
+    description: Customer name
+    type: string
+    maxLength: 255
+  email:
+    description: Customer email
+    type: string
+  phone:
+    description: Customer phone number
+    type: string

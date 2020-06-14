@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Hotel
+  summary: Get hotel by ID
+  operationId: GetHotel
+  description: |
+    Get hotel by ID
+  responses:
+    '200':
+      description: Hotel data has been found
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Hotel.yaml
+    '401':
+      description: Access forbidden
+    '404':
+      description: Not found
+patch:
+  tags:
+    - Hotel
+  summary: Update hotel data
+  operationId: PatchHotel
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Hotel.yaml
+  responses:
+    '201':
+      description: Hotel has been updated
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Hotel.yaml
+    '401':
+      description: Access forbidden
+    '404':
+      description: Not found
+    '409':
+      description: Hotel exists and can't be updated
+    '422':
+      description: Invalid data
+delete:
+  tags:
+    - Hotel
+  summary: Delete hotel by ID
+  operationId: DeleteHotel
+  description: |
+    Delete hotel by ID
+  responses:
+    '204':
+      description: Hotel has been deleted
+    '401':
+      description: Access forbidden
+    '402':
+      description: Can't be deleted
+    '404':
+      description: Not found

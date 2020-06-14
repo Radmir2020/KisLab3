@@ -1,0 +1,536 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: BOOKING API
+  contact:
+    name: Radmir
+    email: radych.taminov@yandex.ru
+servers:
+  - url: 'https://example.com/v1.0'
+    description: Live Server
+tags:
+  - name: Customer
+    description: |
+      Основные операции для клиента
+  - name: Hotel
+    description: |
+      Основные операции для отеля
+  - name: Room
+    description: |
+      Основные операции для комнаты
+  - name: Book
+    description: |
+      Основные операции для бронирования
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  /customers:
+    get:
+      tags:
+        - Customer
+      summary: Get customers data
+      operationId: GetCustomers
+      description: |
+        Get customers data
+      responses:
+        '200':
+          description: Customers data has been found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '401':
+          description: Access forbidden
+    post:
+      tags:
+        - Customer
+      summary: Create new customer
+      operationId: PostCustomer
+      description: |
+        Create new customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer has been succesfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          description: Access forbidden
+        '422':
+          description: Invalid data
+  '/customer/{id}':
+    get:
+      tags:
+        - Customer
+      summary: Get customer by ID
+      operationId: GetCustomer
+      description: |
+        Get customer by ID
+      responses:
+        '200':
+          description: Customer data has been found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+    patch:
+      tags:
+        - Customer
+      summary: Update customer data
+      operationId: PatchCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer has been updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+        '409':
+          description: Customer exists and can't be updated
+        '422':
+          description: Invalid data
+    delete:
+      tags:
+        - Customer
+      summary: Delete customer by ID
+      operationId: DeleteCustomer
+      description: |
+        Delete customer by ID
+      responses:
+        '204':
+          description: Customer has been deleted
+        '401':
+          description: Access forbidden
+        '402':
+          description: Can't be deleted
+        '404':
+          description: Not found
+  /hotels:
+    get:
+      tags:
+        - Hotel
+      summary: Get hotels data
+      operationId: GetHotels
+      description: |
+        Get hotels data
+      responses:
+        '200':
+          description: Hotels data has been found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hotel'
+        '401':
+          description: Access forbidden
+    post:
+      tags:
+        - Hotel
+      summary: Create new hotel
+      operationId: PostHotel
+      description: |
+        Create new hotel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hotel'
+      responses:
+        '200':
+          description: Hotel has been succesfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hotel'
+        '401':
+          description: Access forbidden
+        '422':
+          description: Invalid data
+  '/hotel/{id}':
+    get:
+      tags:
+        - Hotel
+      summary: Get hotel by ID
+      operationId: GetHotel
+      description: |
+        Get hotel by ID
+      responses:
+        '200':
+          description: Hotel data has been found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hotel'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+    patch:
+      tags:
+        - Hotel
+      summary: Update hotel data
+      operationId: PatchHotel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hotel'
+      responses:
+        '201':
+          description: Hotel has been updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hotel'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+        '409':
+          description: Hotel exists and can't be updated
+        '422':
+          description: Invalid data
+    delete:
+      tags:
+        - Hotel
+      summary: Delete hotel by ID
+      operationId: DeleteHotel
+      description: |
+        Delete hotel by ID
+      responses:
+        '204':
+          description: Hotel has been deleted
+        '401':
+          description: Access forbidden
+        '402':
+          description: Can't be deleted
+        '404':
+          description: Not found
+  /room:
+    post:
+      tags:
+        - Room
+      summary: Create new room
+      operationId: PostRoom
+      description: |
+        Create new room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '200':
+          description: Room has been succesfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '401':
+          description: Access forbidden
+        '422':
+          description: Invalid data
+  '/room/{id}':
+    get:
+      tags:
+        - Room
+      summary: Get room by ID
+      operationId: GetRoom
+      description: |
+        Get room by ID
+      responses:
+        '200':
+          description: Room data has been found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+    patch:
+      tags:
+        - Room
+      summary: Update room data
+      operationId: PatchRoom
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '201':
+          description: Room has been updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+        '409':
+          description: Room exists and can't be updated
+        '422':
+          description: Invalid data
+    delete:
+      tags:
+        - Room
+      summary: Delete room by ID
+      operationId: DeleteRoom
+      description: |
+        Delete room by ID
+      responses:
+        '204':
+          description: Room has been deleted
+        '401':
+          description: Access forbidden
+        '402':
+          description: Can't be deleted
+        '404':
+          description: Not found
+  '/hotel-rooms/{hotelId}':
+    get:
+      tags:
+        - Room
+      summary: Get all rooms by hotelId
+      operationId: GetRoomsByHotelId
+      description: |
+        Get all rooms by hotelId
+      responses:
+        '200':
+          description: Rooms data has been found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+        '401':
+          description: Access Forbidden
+        '404':
+          description: Not found
+  /book:
+    post:
+      tags:
+        - Book
+      summary: Create new book
+      operationId: PostBook
+      description: |
+        Create new book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: Book has been succesfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          description: Access forbidden
+        '422':
+          description: Invalid data
+  '/book/{id}':
+    get:
+      tags:
+        - Book
+      summary: Get book by ID
+      operationId: GetBook
+      description: |
+        Get book by ID
+      responses:
+        '200':
+          description: Book data has been found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+    patch:
+      tags:
+        - Book
+      summary: Update book data
+      operationId: PatchBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          description: Book has been updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          description: Access forbidden
+        '404':
+          description: Not found
+        '409':
+          description: Book exists and can't be updated
+        '422':
+          description: Invalid data
+    delete:
+      tags:
+        - Book
+      summary: Delete book by ID
+      operationId: DeleteBook
+      description: |
+        Delete book by ID
+      responses:
+        '204':
+          description: Book has been deleted
+        '401':
+          description: Access forbidden
+        '402':
+          description: Can't be deleted
+        '404':
+          description: Not found
+  '/customer-books/{customerId}':
+    get:
+      tags:
+        - Book
+      summary: Get all books by customerId
+      operationId: GetBooksByCustomerId
+      description: |
+        Get all books by customerId
+      responses:
+        '200':
+          description: Books data has been found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          description: Access Forbidden
+        '404':
+          description: Not found
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - name
+        - phone
+      properties:
+        id:
+          description: Customer ID
+          readOnly: true
+          type: integer
+        name:
+          description: Customer name
+          type: string
+          maxLength: 255
+        email:
+          description: Customer email
+          type: string
+        phone:
+          description: Customer phone number
+          type: string
+    Hotel:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          description: Restaurant identifier
+          readOnly: true
+          type: integer
+        name:
+          description: Hotel name
+          type: string
+          example: Mriya
+        description:
+          description: Hotel description
+          type: string
+        starNumber:
+          description: Hotel star count
+          type: integer
+          example: 5
+    Room:
+      type: object
+      required:
+        - type
+        - number
+        - price
+      properties:
+        id:
+          description: Room identifier
+          readOnly: true
+          type: integer
+        type:
+          description: Room type
+          type: string
+          example: Luxe
+        description:
+          description: Room description
+          type: string
+        price:
+          description: Room price
+          type: number
+        number:
+          description: Room number
+          type: integer
+          example: 413
+        hotel:
+          description: Hotel
+          allOf:
+            - $ref: '#/components/schemas/Hotel'
+    Book:
+      type: object
+      required:
+        - bookingDate
+      properties:
+        id:
+          description: Book identifier
+          readOnly: true
+          type: integer
+        bookingDate:
+          description: Booking date
+          type: string
+        customer:
+          description: Customer
+          allOf:
+            - $ref: '#/components/schemas/Customer'
+        room:
+          description: Room
+          allOf:
+            - $ref: '#/components/schemas/Room'
+        status:
+          description: Book status
+          type: string
+          example: Active

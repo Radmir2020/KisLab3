@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Room
+  summary: Get all rooms by hotelId
+  operationId: GetRoomsByHotelId
+  description: |
+    Get all rooms by hotelId
+  responses:
+    '200':
+      description: Rooms data has been found
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Room.yaml
+    '401':
+      description: Access Forbidden
+    '404':
+      description: Not found

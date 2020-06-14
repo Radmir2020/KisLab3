@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Book
+  summary: Get all books by customerId
+  operationId: GetBooksByCustomerId
+  description: |
+    Get all books by customerId
+  responses:
+    '200':
+      description: Books data has been found
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Book.yaml
+    '401':
+      description: Access Forbidden
+    '404':
+      description: Not found

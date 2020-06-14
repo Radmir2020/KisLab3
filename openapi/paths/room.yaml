@@ -1,0 +1,23 @@
+post:
+  tags:
+    - Room
+  summary: Create new room
+  operationId: PostRoom
+  description: |
+    Create new room
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Room.yaml
+  responses:
+    '200':
+      description: Room has been succesfully created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Room.yaml
+    '401':
+      description: Access forbidden
+    '422':
+      description: Invalid data

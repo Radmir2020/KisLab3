@@ -1,0 +1,19 @@
+type: object
+required:
+  - name
+properties:
+  id:
+    description: Restaurant identifier
+    readOnly: true
+    type: integer
+  name:
+    description: Hotel name
+    type: string
+    example: Mriya
+  description:
+    description: Hotel description
+    type: string
+  starNumber:
+    description: Hotel star count
+    type: integer
+    example: 5

@@ -1,0 +1,23 @@
+post:
+  tags:
+    - Book
+  summary: Create new book
+  operationId: PostBook
+  description: |
+    Create new book
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Book.yaml
+  responses:
+    '200':
+      description: Book has been succesfully created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Book.yaml
+    '401':
+      description: Access forbidden
+    '422':
+      description: Invalid data

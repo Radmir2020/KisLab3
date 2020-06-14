@@ -1,0 +1,23 @@
+type: object
+required:
+  - bookingDate
+properties:
+  id:
+    description: Book identifier
+    readOnly: true
+    type: integer
+  bookingDate:
+    description: Booking date
+    type: string
+  customer:
+    description: Customer
+    allOf:
+      - $ref: ./Customer.yaml
+  room:
+    description: Room
+    allOf:
+      - $ref: ./Room.yaml
+  status:
+    description: Book status
+    type: string
+    example: Active
